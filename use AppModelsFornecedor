@@ -1,0 +1,23 @@
+[90m= [39m[34;4mIlluminate\Database\Eloquent\Collection[39;24m {#5031
+    [34mall[39m: [
+      [34;4mApp\Models\Fornecedor[39;24m {#5033
+        [34mid[39m: [35m1[39m,
+        [34mnome[39m: "[32mFornecedr XYZ[39m",
+        [34msite[39m: "[32mfornecedorxyz.com.br[39m",
+        [34mcreated_at[39m: "[32m2024-06-07 16:14:40[39m",
+        [34mupdated_at[39m: "[32m2024-06-07 16:14:40[39m",
+        [34muf[39m: "[32mSP[39m",
+        [34memail[39m: "[32mcontato@fornecedorxyz.com.br[39m",
+      },
+      [34;4mApp\Models\Fornecedor[39;24m {#5034
+        [34mid[39m: [35m2[39m,
+        [34mnome[39m: "[32mFornecedor ABC[39m",
+        [34msite[39m: "[32mfornecedorabc.com.br[39m",
+        [34mcreated_at[39m: "[32m2024-06-07 16:24:29[39m",
+        [34mupdated_at[39m: "[32m2024-06-07 16:24:29[39m",
+        [34muf[39m: "[32mMG[39m",
+        [34memail[39m: "[32mcontato@forneceabc.com.br[39m",
+      },
+    ],
+  }
+
