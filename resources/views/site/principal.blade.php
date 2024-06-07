@@ -2,7 +2,11 @@
 
 @section('titulo', 'Home')
 
-@section('conteudo')
+@section('content')
+
+@include('site.layouts._partials.topo')
+
+
     <div class="conteudo-destaque">
 
         <div class="esquerda">
