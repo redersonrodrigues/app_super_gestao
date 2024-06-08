@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         // necessário para habilitar a execução das seeders
         $this->call(FornecedorSeeder::class);
+        $this->call(SiteContatoSeeder::class);
+        $this->call(MotivoContatoSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
