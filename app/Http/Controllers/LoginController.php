@@ -7,27 +7,32 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $erro = '';
+        if ($request->get('erro') == 1) {
+            $erro = 'Usuário e/ou senha não existe.';
+        }
         return view('site.login', [
             'title' => 'Login',
+            'erro'  => $erro,
         ]);
     }
 
     public function autenticar(Request $request)
     {
         $regras = [
-            'usuario' => 'email',
-            'senha' => 'required'
+            'usuario'   => 'email',
+            'senha'     => 'required'
         ];
         $feedback = [
-            'usuario.email' => 'O campo usuário (email) é obrigatório.',
-            'senha.required' => 'O campo senha é obrigatório'
+            'usuario.email'     => 'O campo usuário (email) é obrigatório.',
+            'senha.required'    => 'O campo senha é obrigatório'
         ];
         $request->validate($regras, $feedback);
 
-        $email = $request->get('usuario');
-        $password = $request->get('senha');
+        $email      = $request->get('usuario');
+        $password   = $request->get('senha');
         //print_r($request->all());
         // echo "Usuario:  $email | Senha: $senha";
         // incluir o model User
@@ -42,7 +47,8 @@ class LoginController extends Controller
         if (isset($usuario->name)) {
             echo 'O usuário existe.';
         } else {
-            echo 'O usuaário não existe.';
+            //'O usuaário não existe.'
+            return redirect()->route('site.login', ['erro' => 1,]);
         }
     }
 }
