@@ -12,7 +12,17 @@ class LoginController extends Controller
         ]);
     }
 
-    public function autenticar(){
-        return 'Chegamos até aqui';
+    public function autenticar(Request $request){
+        $regras = [
+            'usuario' => 'email',
+            'senha' => 'required'
+        ];
+        $feedback = [
+            'usuario.email' => 'O campo usuário (email) é obrigatório.',
+            'senha.required' => 'O campo senha é obrigatório'
+        ];
+        $request->validate($regras,$feedback);
+
+        print_r($request->all());
     }
 }
