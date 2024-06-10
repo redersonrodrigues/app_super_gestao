@@ -54,17 +54,56 @@ class ContatoController extends Controller
 
     public function salvar(Request $request)
     {
-        // dd($request);
-// realizar a validação dos dados recebidos no request vindos do formulário
-$request->validate([
-    'nome'              => 'required|min:3|max:40',// nomes com no mínimo 3 e no maximo 40 caracteres
-    'telefone'          => 'required',
-    'email'             => 'required',
-    'motivo_contato'    => 'required',
-    'mensagem'          => 'required|max:2000'
 
-]);
+        $regras = [
+            'nome'                  => 'required|min:3|max:40|unique:site_contatos', // nomes com no mínimo 3 e no maximo 40 caracteres
+            'telefone'              => 'required',
+            'email'                 => 'email',
+            'motivo_contatos_id'    => 'required',
+            'mensagem'              => 'required|max:2000'
+        ];
+        $feedback = [
+            'nome.required'                 => 'O campo nome precisa ser preenchido',
+            'nome.min'                      => 'O campo nome pode ter no mínimo 3 caracteres',
+            'nome.min'                      => 'O campo nome pode ter no máximo 40 caracteres',
+            'nome.unique'                   => 'O nome informado já está em uso',
+            'email.email'                   => 'O  email informado não é valido. Deve ter o formato de email',
+            'mensagem.max'                  => 'o campo mensagem pode ter no máximo 2000 caracteres',
+            'required'                      => 'O campo :attribute deve ser preenchido'
+        ];
 
-        // SiteContato::create($request->all());
+        $request->validate($regras,$feedback);
+
+        // // dd($request);
+        // // realizar a validação dos dados recebidos no request vindos do formulário
+        // $request->validate(
+        //     [
+        //         'nome'                  => 'required|min:3|max:40|unique:site_contatos', // nomes com no mínimo 3 e no maximo 40 caracteres
+        //         'telefone'              => 'required',
+        //         'email'                 => 'email',
+        //         'motivo_contatos_id'    => 'required',
+        //         'mensagem'              => 'required|max:2000'
+
+        //     ],
+        //     [
+        //         // mensagens traduzidas de acordo com a determinação para o item
+        //         'nome.required'                 => 'O campo nome precisa ser preenchido',
+        //         'nome.min'                      => 'O campo nome pode ter no mínimo 3 caracteres',
+        //         'nome.min'                      => 'O campo nome pode ter no máximo 40 caracteres',
+        //         'nome.unique'                   => 'O nome informado já está em uso',
+        //         'email.email'                   => 'O  email informado não é valido. Deve ter o formato de email',
+        //         // 'motivo_contatos_id.required'   => 'O campo motivo_contatos_id precisa ser preenchido',
+        //         // 'mensagem.required'             => 'O campo mensagem precisa ser preenchido',
+        //         'mensagem.max'                  => 'o campo mensagem pode ter no máximo 2000 caracteres',
+
+        //         // traduçao da determinação de validação 
+        //         'required'              => 'O campo :attribute deve ser preenchido'
+
+
+        //     ]
+        // );
+
+        SiteContato::create($request->all());
+        return redirect()->route('site.index');
     }
 }
