@@ -9,12 +9,14 @@ class FornecedorController extends Controller
 {
   public function index()
   {
+
     $fornecedores = Fornecedor::all();
     return view('app.fornecedor.index', ['fornecedores' => $fornecedores]);
   }
 
   public function listar(Request $request)
   {
+
     // dd($request->all());
     $fornecedores = Fornecedor::where('nome', 'like', '%' . $request->input('nome') . '%')
       ->where('site', 'like', '%' . $request->input('site') . '%')
@@ -67,14 +69,14 @@ class FornecedorController extends Controller
     if ($request->input('_token') != '' && $request->input('id') != '') {
       $fornecedor = Fornecedor::find($request->input('id'));
       $update = $fornecedor->update($request->all());
-     
+
       if ($update) {
         $msg =  'Atualização realizado com sucesso.';
       } else {
         $msg = 'Erro ao atualilzar o registro.';
       }
 
-      return redirect()->route('app.fornecedor.editar',['id' => $request->input('id'), 'msg' => $msg]);
+      return redirect()->route('app.fornecedor.editar', ['id' => $request->input('id'), 'msg' => $msg]);
     }
     return view('app.fornecedor.adicionar', [
       'msg' => $msg,
@@ -92,5 +94,19 @@ class FornecedorController extends Controller
     $fornecedor = Fornecedor::find($id);
     //dd($fornecedor);
     return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
+  }
+
+  public function excluir($id)
+  {
+    // echo 'Chegamos até aqui.';
+    //echo $id;
+    //Fornecedor::find($id)->delete();
+    Fornecedor::find($id)->forceDelete(); // apagar do banco mesmo com softDelete
+
+
+    $msg = "Fornecedor removido com sucesso";
+
+
+    return redirect()->route('app.fornecedor');
   }
 }
