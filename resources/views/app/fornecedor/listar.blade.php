@@ -45,6 +45,8 @@
 
                 </table>
 
+                {{ $fornecedores->appends($request)->links() }}
+
             </div>
 
         </div>
