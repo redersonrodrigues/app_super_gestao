@@ -13,7 +13,7 @@ class Item extends Model
     // ajuste para usar tabela produtos do banco de dados
     protected $table = 'produtos';
 
-    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id','fornecedor_id'];
 
     /**
      * Get the produtoDetalhe associated with the Produto

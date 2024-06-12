@@ -21,6 +21,7 @@
                         <td scope="col">ID</td>
                         <th scope="row">{{ $produto->id }}</th>
                     </tr>
+                
                     <tr>
                         <td scope="col">Nome</td>
                         <td>{{ $produto->nome }}</td>
