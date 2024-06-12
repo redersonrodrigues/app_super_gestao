@@ -12,37 +12,44 @@ class ProdutoController extends Controller
 
     public function index(Request $request)
     {
-        /*
-        * IMPLEMENTAÇÃO SEM O ELOQUENT ORM
-        */
+        //         /*
+        //         * IMPLEMENTAÇÃO SEM O ELOQUENT ORM
+        //         */
 
+        //         $produtos = Produto::paginate(10);
+
+        // foreach ($produtos as $key => $produto) {
+        //     //print_r($produto->getAttributes());
+        //     //echo '<br><br>';
+
+
+        // $produtoDetalhe = ProdutoDetalhe::where('produto_id',$produto->id)->first();
+
+        // if (isset($produtoDetalhe)) {
+        //     //print_r($produtoDetalhe->getAttributes());
+
+        //     $produtos[$key]['comprimento']  = $produtoDetalhe->comprimento;
+        //     $produtos[$key]['largura']      = $produtoDetalhe->largura;
+        //     $produtos[$key]['altura']       = $produtoDetalhe->altura;
+        // }
+        // // echo '<hr>';
+        // }
+        // return view(
+        //     'app.produto.index',
+        //     [
+        //         'produtos' => $produtos,
+        //         'request' => $request->all()
+        //     ]
+        // );
         $produtos = Produto::paginate(10);
-
-foreach ($produtos as $key => $produto) {
-    //print_r($produto->getAttributes());
-    //echo '<br><br>';
-
-
-$produtoDetalhe = ProdutoDetalhe::where('produto_id',$produto->id)->first();
-
-if (isset($produtoDetalhe)) {
-    //print_r($produtoDetalhe->getAttributes());
-
-    $produtos[$key]['comprimento']  = $produtoDetalhe->comprimento;
-    $produtos[$key]['largura']      = $produtoDetalhe->largura;
-    $produtos[$key]['altura']       = $produtoDetalhe->altura;
-}
-// echo '<hr>';
-
-}
-
-        return view(
+                return view(
             'app.produto.index',
             [
                 'produtos' => $produtos,
                 'request' => $request->all()
             ]
         );
+
     }
 
     public function create()
@@ -51,7 +58,7 @@ if (isset($produtoDetalhe)) {
         return view('app.produto.create', ['unidades' => $unidades]);
     }
 
-  
+
     public function store(Request $request)
     {
 
@@ -67,9 +74,9 @@ if (isset($produtoDetalhe)) {
             'nome.min' => 'O campo nome dever ter no mínimo 3 caracteres.',
             'nome.max' => 'O campo nome deve ter no máximo 40 caracteres.',
             'descricao.min' => 'O campo descrição dever ter no mínimo 3 caracteres.',
-            'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres.',   
+            'descricao.max' => 'O campo descrição deve ter no máximo 2000 caracteres.',
             'peso.integer' => 'O campo peso deve ser do tipo inteiro.',
-            'unidade_id.exists' => 'A unidade de medida informada não existe.'      
+            'unidade_id.exists' => 'A unidade de medida informada não existe.'
         ];
         $request->validate($regras, $feedback);
 
@@ -82,7 +89,7 @@ if (isset($produtoDetalhe)) {
 
     public function show(Produto $produto)
     {
-        return view('app.produto.show',['produto'=>$produto]);
+        return view('app.produto.show', ['produto' => $produto]);
     }
 
     public function edit(Produto $produto)
@@ -100,7 +107,7 @@ if (isset($produtoDetalhe)) {
         // print_r($produto->getAttributes()); // instância do objeto no estado anterior
 
         $produto->update($request->all());
-        return redirect()->route('produto.show',['produto' => $produto->id]);
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     public function destroy(Produto $produto)
