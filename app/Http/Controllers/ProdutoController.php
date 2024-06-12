@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use App\Models\Produto;
 use App\Models\ProdutoDetalhe;
 use App\Models\Unidade;
@@ -41,15 +42,29 @@ class ProdutoController extends Controller
         //         'request' => $request->all()
         //     ]
         // );
-        $produtos = Produto::paginate(10);
-                return view(
+        /*
+        * IMPLEMENTAÇÃO COM ELOQUENT ORM (HASONE)
+        */
+        // $produtos = Produto::paginate(10);
+        //         return view(
+        //     'app.produto.index',
+        //     [
+        //         'produtos' => $produtos,
+        //         'request' => $request->all()
+        //     ]
+        // );
+        /*
+        * IMPLEMENTAÇÃO COM ELOQUENT E NOME DE TABELA DETERMINADOS PELO USUARIO
+        * DIFERENTES DO PADRÃO LARAVEL
+        */
+        $produtos = Item::paginate(10);
+        return view(
             'app.produto.index',
             [
                 'produtos' => $produtos,
                 'request' => $request->all()
             ]
         );
-
     }
 
     public function create()

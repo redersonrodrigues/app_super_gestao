@@ -15,9 +15,9 @@
         </div>
         <div class="informacao-pagina">
             <h4>Produto</h4>
-            <div>Nome: {{ $produto_detalhe->produto->nome }}</div>
+            <div>Nome: {{ $produto_detalhe->item->nome }}</div>
             <br>
-            <div>Descrição: {{ $produto_detalhe->produto->descricao }}</div>
+            <div>Descrição: {{ $produto_detalhe->item->descricao }}</div>
             <br>
 
 
