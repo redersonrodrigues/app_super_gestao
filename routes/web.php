@@ -5,6 +5,8 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoProdutoController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
@@ -45,6 +47,13 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
 
     //produto-detalhe
     Route::resource('/produto-detalhe', ProdutoDetalheController::class);
+
+    //cliente
+    Route::resource('/cliente', ClienteController::class);
+    //pedido
+    Route::resource('/pedido', PedidoController::class);
+    //pedido-produto
+    Route::resource('/pedido-produto', PedidoProdutoController::class);
 });
 
 Route::fallback(function () {
