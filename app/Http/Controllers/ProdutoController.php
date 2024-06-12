@@ -57,7 +57,7 @@ class ProdutoController extends Controller
         * IMPLEMENTAÇÃO COM ELOQUENT E NOME DE TABELA DETERMINADOS PELO USUARIO
         * DIFERENTES DO PADRÃO LARAVEL
         */
-        $produtos = Item::with(['itemDetalhe'])->paginate(10); // Eager Loading = carregamento "rápido" da pagina (ansioso)
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10); // Eager Loading = carregamento "rápido" da pagina (ansioso)
 
         return view(
             'app.produto.index',

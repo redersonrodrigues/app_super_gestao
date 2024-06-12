@@ -22,7 +22,8 @@
                         <tr>
                             <th class="col">Nome</th>
                             <th class="col">Descrição</th>
-                            <th class="col">Fornecedor</th>
+                            <th class="col">Nome do Fornecedor</th>
+                            <th class="col">Site do Fornecedor</th>
                             <th class="col">Peso</th>
                             <th class="col">Unidade</th>
                             <th class="col">Comprimento</th>
@@ -39,6 +40,7 @@
                                 <th class="col">{{ $produto->nome }}</th>
                                 <td>{{ $produto->descricao }}</td>
                                 <td>{{ $produto->fornecedor->nome }}</td>
+                                <td>{{ $produto->fornecedor->site }}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->unidade_id }}</td>
                                 <td>{{ $produto->itemDetalhe->comprimento ?? '' }}</td>
