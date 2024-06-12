@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Item extends Model
@@ -22,5 +23,15 @@ class Item extends Model
     public function itemDetalhe(): HasOne // não mudou ṕara item para não ter que mudar na view
     {
         return $this->hasOne(ItemDetalhe::class, 'produto_id','id');
+    }
+
+    /**
+     * Get the fornecedor that owns the Item
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fornecedor(): BelongsTo
+    {
+        return $this->belongsTo(Fornecedor::class,'fornecedor_id', 'id');
     }
 }
