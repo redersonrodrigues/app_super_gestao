@@ -29,7 +29,7 @@
                     <tbody>
                         @foreach ($pedidos as $pedido)
                             <tr>
-                                <th class="col">{{ $pedido->nome }}</th>
+                                <th class="col">{{ $pedido->id }}</th>
                                 <th class="col">{{ $pedido->cliente_id }}</th>
                                  <td>
                                     <a href="{{ route('pedido.show', ['pedido'=>$pedido->id]) }}">Visualizar</a>
