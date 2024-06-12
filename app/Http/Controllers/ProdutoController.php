@@ -45,7 +45,7 @@ class ProdutoController extends Controller
         /*
         * IMPLEMENTAÇÃO COM ELOQUENT ORM (HASONE)
         */
-        // $produtos = Produto::paginate(10);
+        // $produtos = Produto::paginate(10); // Lazy loading = carregamento tardio
         //         return view(
         //     'app.produto.index',
         //     [
@@ -57,7 +57,8 @@ class ProdutoController extends Controller
         * IMPLEMENTAÇÃO COM ELOQUENT E NOME DE TABELA DETERMINADOS PELO USUARIO
         * DIFERENTES DO PADRÃO LARAVEL
         */
-        $produtos = Item::paginate(10);
+        $produtos = Item::with(['itemDetalhe'])->paginate(10); // Eager Loading = carregamento "rápido" da pagina (ansioso)
+
         return view(
             'app.produto.index',
             [
