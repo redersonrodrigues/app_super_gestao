@@ -53,7 +53,11 @@ Route::middleware('autenticacao:padrao,visitante')->prefix('/app')->group(functi
     //pedido
     Route::resource('/pedido', PedidoController::class);
     //pedido-produto
-    Route::resource('/pedido-produto', PedidoProdutoController::class);
+    //Route::resource('/pedido-produto', PedidoProdutoController::class);
+    Route::get('/pedido-produto/create/{pedido}',[PedidoProdutoController::class,'create'])->name('pedido-produto.create');
+    Route::post('/pedido-produto/store/{pedido}',[PedidoProdutoController::class,'store'])->name('pedido-produto.store');
+
+
 });
 
 Route::fallback(function () {

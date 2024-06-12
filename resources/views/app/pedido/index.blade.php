@@ -24,6 +24,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,20 +32,26 @@
                             <tr>
                                 <th class="col">{{ $pedido->id }}</th>
                                 <th class="col">{{ $pedido->cliente_id }}</th>
-                                 <td>
-                                    <a href="{{ route('pedido.show', ['pedido'=>$pedido->id]) }}">Visualizar</a>
+                                <th>
+                                    <a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">Adicionar
+                                        Pedido</a>
+                                </th>
+                                <td>
+                                    <a href="{{ route('pedido.show', ['pedido' => $pedido->id]) }}">Visualizar</a>
                                 </td>
                                 <td>
-                                    <form id="form_{{$pedido->id}}" action="{{ route('pedido.destroy', ['pedido'=>$pedido->id]) }}" method="post">
+                                    <form id="form_{{ $pedido->id }}"
+                                        action="{{ route('pedido.destroy', ['pedido' => $pedido->id]) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         {{-- <button type="submit">Excluir</button> --}}
-                                        <a href="#" onclick="document.getElementById('form_{{$pedido->id}}').submit()">Excluir</a>
+                                        <a href="#"
+                                            onclick="document.getElementById('form_{{ $pedido->id }}').submit()">Excluir</a>
                                     </form>
-                                    
+
                                 </td>
                                 <td>
-                                    <a href="{{ route('pedido.edit',['pedido'=>$pedido->id]) }}">Editar</a>
+                                    <a href="{{ route('pedido.edit', ['pedido' => $pedido->id]) }}">Editar</a>
                                 </td>
                             </tr>
                         @endforeach
