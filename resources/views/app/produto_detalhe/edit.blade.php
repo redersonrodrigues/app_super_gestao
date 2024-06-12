@@ -14,8 +14,11 @@
             </ul>
         </div>
         <div class="informacao-pagina">
+
+            {{ $produto_detalhe->toJson() }}
             <h4>Produto</h4>
             <div>Nome: {{ $produto_detalhe->item->nome }}</div>
+            {{ $produto_detalhe->toJson() }}
             <br>
             <div>Descrição: {{ $produto_detalhe->item->descricao }}</div>
             <br>
