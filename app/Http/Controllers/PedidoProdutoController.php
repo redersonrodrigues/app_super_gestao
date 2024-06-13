@@ -83,8 +83,22 @@ $pedido->produtos()->attach($request->get('produto_id'),[
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pedido $pedido, Produto $produto)
     {
-        //
+        // print_r($pedido->getAttributes());
+        // echo '<hr>';
+        // print_r($produto->getAttributes());
+
+        echo $pedido->id.' - '.$produto->id;
+
+        // delete pelo modo convencional
+        // PedidoProduto::where(['pedido_id'=>$pedido->id,
+        // 'produto_id'=>$produto->id])->delete();
+
+        // delete pelo relacionameto (usando o methodo: detach)
+        $pedido->produtos()->detach($produto->id);
+
+        return redirect()->route('pedido-produto.create',['pedido' => $pedido]);
+
     }
 }
